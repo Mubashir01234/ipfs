@@ -12,17 +12,17 @@ import (
 )
 
 func main() {
-	color.Cyan("🌏 Server running on localhost:" + "3000")
+	color.Cyan("🌏 Server running on localhost:" + "2000")
 
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
 	router := routes.Routes()
 	c := cors.New(cors.Options{
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
 		AllowedHeaders:   []string{"Content-Type", "Origin", "Accept", "*"},
-		AllowedOrigins:   []string{"Access-Control-Allow-Origin", "https://sodility-qa.herokuapp.com", "*"},
+		AllowedOrigins:   []string{"Access-Control-Allow-Origin", "*"},
 		AllowCredentials: false,
 	})
 
 	handler := c.Handler(router)
-	http.ListenAndServe(":"+"3000", logs.LogRequest(handler))
+	http.ListenAndServe(":"+"2000", logs.LogRequest(handler))
 }

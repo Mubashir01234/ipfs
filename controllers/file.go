@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io"
 	middlewares "ipfs/middlewares"
@@ -51,8 +52,12 @@ var UploadFile = http.HandlerFunc(func(rw http.ResponseWriter, r *http.Request) 
 	resp.Filename = header.Filename
 	resp.FileSize = header.Size
 	resp.IpfsURL = fmt.Sprintf("https://ipfs.io/ipfs/%v", cid)
+	rw.Header().Set("Content-Type", "application/json")
+	rw.WriteHeader(http.StatusOK)
 
-	middlewares.SuccessRespond(resp, rw)
+	json.NewEncoder(rw).Encode(resp)
+
+	// middlewares.SuccessRespond(resp.IpfsURL, rw)
 })
 
 func addFile(sh *shell.Shell, data []byte) (string, error) {
