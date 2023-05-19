@@ -19,6 +19,7 @@ func main() {
 	c := cors.New(cors.Options{
 		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE"},
 		AllowedHeaders: []string{"Content-Type", "Origin", "Accept", "*"},
+		AllowedOrigins: []string{"Access-Control-Allow-Origin", "*"},
 	})
 
 	handler := c.Handler(router)
