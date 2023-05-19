@@ -17,9 +17,10 @@ func main() {
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
 	router := routes.Routes()
 	c := cors.New(cors.Options{
-		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE"},
-		AllowedHeaders: []string{"Content-Type", "Origin", "Accept", "*"},
-		AllowedOrigins: []string{"Access-Control-Allow-Origin", "*"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
+		AllowedHeaders:   []string{"Content-Type", "Origin", "Accept", "*"},
+		AllowedOrigins:   []string{"Access-Control-Allow-Origin", "https://sodility-qa.herokuapp.com", "*"},
+		AllowCredentials: false,
 	})
 
 	handler := c.Handler(router)
